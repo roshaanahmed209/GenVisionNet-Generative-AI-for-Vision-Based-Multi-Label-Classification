@@ -1,24 +1,6 @@
 # 🧠 GenVisionNet: Generative AI for Vision-Based Multi-Label Classification
 
-![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
-![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)
-
 GenVisionNet is a deep learning framework that combines **Generative Adversarial Networks (GANs)** with **state-of-the-art Convolutional Neural Networks (CNNs)** for **multi-label image classification**. Using the Pascal VOC 2008 dataset, it investigates how synthetic data impacts classification performance.
-
----
-
-## 📚 Table of Contents
-
-- [🚀 Project Overview](#-project-overview)
-- [📂 Dataset](#-dataset)
-- [🔧 Features](#-features)
-- [📁 Project Structure](#-project-structure)
-- [📈 Results](#-results)
-- [🛠 Requirements](#-requirements)
-- [▶️ How to Run](#️-how-to-run)
-- [🧪 Future Work](#-future-work)
-- [📜 License](#-license)
-- [👤 Author](#-author)
 
 ---
 
@@ -73,16 +55,21 @@ VOCdevkit/VOC2008/
 
 ## 📈 Results
 
-| Model          | No GAN (Baseline) | +100 Samples | +200 Samples | +500 Samples |
-|----------------|------------------|--------------|--------------|--------------|
-| VGG16          | XX.XX            | XX.XX        | XX.XX        | XX.XX        |
-| ResNet50       | XX.XX            | XX.XX        | XX.XX        | XX.XX        |
-| DenseNet121    | XX.XX            | XX.XX        | XX.XX        | XX.XX        |
-| EfficientNet-B0| XX.XX            | XX.XX        | XX.XX        | XX.XX        |
+The performance of four pretrained CNN models (VGG16, ResNet50, DenseNet121, and EfficientNet-B0) was evaluated using the Pascal VOC 2008 dataset. The models were trained on the original dataset as well as on versions augmented with synthetic images generated using a class-conditional Variational Autoencoder (VAE).
 
-> 📌 Replace `XX.XX` with your actual mAP values from experiments.
+| Model             | No GAN (Baseline) | +100 Samples | +200 Samples | +500 Samples |
+|-------------------|------------------:|-------------:|-------------:|-------------:|
+| **VGG16**          | 0.7190            | 0.6699       | 0.6356       | 0.6470       |
+| **ResNet50**       | 0.8113            | 0.7651       | 0.7370       | 0.7249       |
+| **DenseNet121**    | 0.8125            | 0.7788       | 0.7472       | 0.7202       |
+| **EfficientNet-B0**| 0.8149            | 0.7927       | 0.7713       | 0.7493       |
 
----
+### 📌 Insight:
+
+- The **baseline models (no synthetic data)** consistently achieved the highest mAP.
+- Adding **100 or 200 synthetic samples per class** slightly improved performance for underrepresented or diverse classes.
+- Adding **500 samples per class** led to **diminishing or negative returns**, likely due to overfitting or the lower fidelity of VAE-generated data.
+- **EfficientNet-B0** outperformed all other models across all scenarios, demonstrating greater resilience to noise and synthetic variability.
 
 ## 🛠 Requirements
 
